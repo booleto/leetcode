@@ -36,7 +36,7 @@ class Solution:
 
     def getPermutation(self, n: int, k: int) -> str:
         permu_list = []
-        temp_k = k
+        temp_k = k-1
         for i in reversed(range(1, n+1)):
             s_i = self.fact(i-1)
             permu_list.append(temp_k // s_i)
@@ -56,12 +56,15 @@ class Solution:
                         break
                 empty_count += 1
                     
-        # print(permu_list)
+        print(permu_list)
         return sol
     
-print(Solution().getPermutation(3, 3))
-print(Solution().getPermutation(4, 23))
-print(Solution().getPermutation(9, 131545))
-print(Solution().getPermutation(9, 334543))
-print(Solution().getPermutation(9, 134539))
-print(Solution().getPermutation(9, 99920))
+# print(Solution().getPermutation(3, 3))
+# print(Solution().getPermutation(4, 23))
+# print(Solution().getPermutation(9, 131545))
+# print(Solution().getPermutation(9, 334543))
+# print(Solution().getPermutation(9, 134539))
+# print(Solution().getPermutation(9, 819))
+
+for i in range(6):
+    print(Solution().getPermutation(3, i))

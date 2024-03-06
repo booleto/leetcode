@@ -20,6 +20,7 @@ from collections import deque
 from collections import Counter
 
 import sys
+import numpy as np
 from time import time_ns
 
 class Solution:
@@ -32,6 +33,7 @@ class Solution:
             
     def isValid(self, grid, pos, dir, empty_count):
         next_x, next_y = self.sum(pos, dir)
+        
         if grid[next_x][next_y] == 1:
             return False
         if grid[next_x][next_y] == 2:
@@ -48,5 +50,12 @@ class Solution:
     
 
     def uniquePathsIII(self, grid: List[List[int]]) -> int:
-        empty_count = sum(row.count() for row in grid)
-        stack = []
+        grid = np.array(grid, dtype=np.int8)
+        empty_count = grid.count(0)
+        start = np.where(grid == 1)
+
+        stack = [(start, empty_count)]
+        while stack:
+            pos, empty_count = stack.pop()
+            
+            for i in range(4):

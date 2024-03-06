@@ -71,7 +71,6 @@ class Solution:
                 
         prev = head
         head = head.next
-        prev2 = None
         prev_batch_head = None
         batch_tail = prev
         batch_head = None
@@ -94,13 +93,14 @@ class Solution:
 
                 # set batch path
                 next_batch = head.next
-                prev2 = prev
                 head.next = prev
-                head = batch_head
-                head.next = next_batch
-            
-            if prev2 != None and prev != None:
-                prev.next = prev2
+                batch_head.next = next_batch
+                head = next_batch
+                continue
+
+            next_node = head.next
+            next_node.next = head
+            head = next_node
 
         return head
 
