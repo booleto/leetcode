@@ -23,13 +23,13 @@ import sys
 
 class Solution:
     def __init__(self):
-        self.cache : dict = {1 : 1}
+        self.cache : dict = {1 : 1, 0 : 1}
 
-    def series(self, n : int):
+    def fact(self, n : int):
         if n in self.cache:
             return self.cache[n]
         
-        ret = self.series(n-1) + n
+        ret = self.fact(n-1) * n
         self.cache[n] = ret
         return ret
     
@@ -38,7 +38,7 @@ class Solution:
         permu_list = []
         temp_k = k
         for i in reversed(range(1, n+1)):
-            s_i = self.series(i)
+            s_i = self.fact(i-1)
             permu_list.append(temp_k // s_i)
             temp_k = temp_k % s_i
 
@@ -52,21 +52,16 @@ class Solution:
                 
                 if empty_count == permu_list[i]:
                         chosen[j] = True
-                        sol = sol + str(j)
+                        sol = sol + str(j + 1)
                         break
                 empty_count += 1
                     
-
-                # while temp_idx < permu_list[i]:
-                #     if chosen[temp_idx]:
-                #         temp_idx += 1
-
-            # while pos in chosen: # TODO: fix result printing
-            #     pos += 1
-            # chosen.add(pos)
-            # sol = sol + str(pos)
-        print(permu_list)
+        # print(permu_list)
         return sol
     
 print(Solution().getPermutation(3, 3))
-print(Solution().getPermutation(4, 2))
+print(Solution().getPermutation(4, 23))
+print(Solution().getPermutation(9, 131545))
+print(Solution().getPermutation(9, 334543))
+print(Solution().getPermutation(9, 134539))
+print(Solution().getPermutation(9, 99920))
