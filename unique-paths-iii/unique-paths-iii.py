@@ -21,7 +21,6 @@ from collections import Counter
 
 import sys
 from time import time_ns
-import copy as cp
 
 class Solution:
     def uniquePathsIII(self, grid: List[List[int]]) -> int:
